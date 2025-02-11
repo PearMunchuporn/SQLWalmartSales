@@ -440,7 +440,7 @@ ORDER BY Number_Rating_Criteria
 | Good | 335 |
 
 
-<b>10. How to find number of order each product line. </b> <br> 
+<b>11. How to find number of order each product line. </b> <br> 
 ```sql
 SELECT TOP (1000) 
 	Product_Line,

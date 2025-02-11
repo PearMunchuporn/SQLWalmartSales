@@ -29,7 +29,7 @@ SQL Project Analyzing Walmart Sales in Myanmar Naypyitaw,Yangon, and Mandalay Ci
 
 <h2>Analysis the Data</h2>
 
-<h3>Customers Analysis</h3>
+<h2>Customers Analysis</h2>
 
 Customer analysis aims to understand the target group of customers and identify the types of customers who purchase the product for marketing strategy improvement to gain more revenue.
 

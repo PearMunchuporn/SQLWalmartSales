@@ -217,6 +217,9 @@ ORDER BY Customer_Number DESC
 | Sun| 133 |
 | Mon | 125 |
 
+<br>
+<hr>
+<br>
 <h2>Product Analysis</h2>
 
 Product analysis is analyzed about rating and cogs to identify what product line gains the most profit for enhancing product quality and planning budget.

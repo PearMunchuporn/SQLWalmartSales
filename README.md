@@ -29,7 +29,7 @@ SQL Project Analyzing Walmart Sales in Myanmar Naypyitaw,Yangon, and Mandalay Ci
 
 <h2>Analysis the Data</h2>
 
-<h2>Customers Analysis</h2>
+<h2>Customer Analysis</h2>
 
 Customer analysis aims to understand the target group of customers and identify the types of customers who purchase the product for marketing strategy improvement to gain more revenue.
 
@@ -216,4 +216,252 @@ ORDER BY Customer_Number DESC
 | Thu  |  138|
 | Sun| 133 |
 | Mon | 125 |
+
+<h2>Product Analysis</h2>
+
+Product analysis is analyzed about rating and cogs to identify what product line gains the most profit for enhancing product quality and planning budget.
+<h3>Product Questions and SQL solutions</h3>
+
+<b>1. How to find total cogs of each product? </b> <br>
+
+
+```sql
+SELECT TOP (1000) 
+	Product_Line,
+    ROUND(SUM(Cogs),2) AS Total_Cogs,
+    ROUND(SUM(Total),2) AS Total_Sales
+
+  FROM [Walmart].[dbo].[WalmartSalesData]
+  GROUP BY Product_Line
+  ORDER BY Total_Cogs DESC
+```
+<b>Output</b>
+
+| Product_Line       | Total_Cogs | Total_Sales    |
+|-------------|-----|---------------|
+| Food and beverages       | 53471.28  | 56144.84  |
+| Sports and travel       | 52497.93  | 55122.83  | 
+| Electronic accessories       | 51750.03  | 54337.53  | 
+| Fashion accessories       | 51719.9  | 54305.9  | 
+| Home and lifestyle      | 51297.06  | 53861.91  |
+| Health and beauty     | 46851.18  | 49193.74  | 
+
+
+<b>2. How to find max Cogs of each product line? </b> <br>
+```sql
+SELECT TOP (1000) 
+     Product_Line,
+     ROUND(MAX(Cogs),2) AS Max_Cogs
+	
+  FROM [Walmart].[dbo].[WalmartSalesData]
+  GROUP BY Product_Line
+  ORDER BY Max_Cogs DESC
+```
+<b>Output</b>
+
+| Product_Line       | Max_Cogs | 
+|-------------|---------------------|
+| Fashion accessories   | 993 |
+| Food and beverages     | 985.2  | 
+| Home and lifestyle      | 975  | 
+| Sports and travel       | 954.4  | 
+| Health and beauty     | 905 | 
+| Electronic accessories     | 897.57 | 
+
+
+<b>3. How to find min Cogs of each product line? </b> <br>
+```sql
+SELECT TOP (1000) 
+     Product_Line,
+     ROUND(MIN(Cogs),2) AS Min_Cogs
+	
+  FROM [Walmart].[dbo].[WalmartSalesData]
+  GROUP BY Product_Line
+  ORDER BY Min_Cogs DESC
+```
+<b>Output</b>
+
+| Product_Line       | Min_Cogs | 
+|-------------|---------------------|
+| Fashion accessories   | 25.45 |
+| Food and beverages     | 21.58  | 
+| Health and beauty     | 17.75  | 
+| Home and lifestyle      | 13.98  | 
+| Fashion accessories    | 12.09 | 
+| Sports and travel     | 10.17 | 
+
+<b>4. What product line has the most cogs? </b> <br> 
+```sql
+SELECT TOP (1000)
+     Product_Line,
+     ROUND((Cogs),2) as  Max_Cogs
+	
+  FROM [Walmart].[dbo].[WalmartSalesData]
+  WHERE Cogs = (SELECT MAX(Cogs) FROM [Walmart].[dbo].[WalmartSalesData])
+```
+<b>Output</b>
+
+| Product_Line       | Max_Cogs | 
+|-------------|---------------------|
+| Fashion accessories   | 993 |
+
+<b>5. What product line has min cogs? </b> <br> 
+```sql
+SELECT TOP (1000)
+     Product_Line,
+     ROUND((Cogs),2) as Min_Cogs
+
+  FROM [Walmart].[dbo].[WalmartSalesData]
+  WHERE Cogs = (SELECT MIN(Cogs) from [Walmart].[dbo].[WalmartSalesData])
+```
+<b>Output</b>
+
+| Product_Line       | Min_Cogs | 
+|-------------|---------------------|
+| Sports and travel   | 10.17 |
+
+
+<b>6. How to find total gross income of each product line? </b> <br> 
+```sql
+SELECT TOP (1000) 
+     Product_Line,
+     ROUND(SUM([gross_income]),2) as Total_Gross_Income
+
+FROM [Walmart].[dbo].[WalmartSalesData]
+GROUP BY Product_line
+ORDER BY Total_Gross_Income DESC
+
+```
+<b>Output</b>
+
+| Product_Line       | Total_Gross_Income | 
+|-------------|---------------------|
+| Food and beverages   | 2673.56  |
+| Sports and travel  | 2624.9 |
+| Electronic accessories   | 2587.5  |
+| Fashion accessories| 2586 |
+| Home and lifestyle  | 2564.85 |
+| Health and beauty   | 2342.56 |
+
+
+
+<b>7. How to find max rating each product line? </b> <br> 
+```sql
+SELECT TOP (100) 
+     Product_Line,
+     ROUND(MAX(Rating),2) as Max_Rating
+	
+  FROM [Walmart].[dbo].[WalmartSalesData]
+  GROUP BY Product_Line
+  ORDER BY Max_Rating
+```
+<b>Output</b>
+
+| Product_Line       | Max_Rating | 
+|-------------|---------------------|
+| Fashion accessories| 9.9 |
+| Food and beverages | 9.9 |
+| Home and lifestyle  | 9.9 |
+| Sports and travel | 10 |
+| Electronic accessories | 10 |
+| Health and beauty   | 10 |
+
+
+
+<b>8. How to find min rating each product line? </b> <br> 
+```sql
+SELECT TOP (100) 
+     Product_Line,
+     ROUND(MIN(Rating),2) as Min_Rating
+	
+  FROM [Walmart].[dbo].[WalmartSalesData]
+  GROUP BY Product_Line
+  ORDER BY Min_Rating
+```
+<b>Output</b>
+
+| Product_Line       | Min_Rating | 
+|-------------|---------------------|
+| Sports and travel| 4 |
+| Food and beverages | 4 |
+| Electronic accessories  | 4 |
+| Health and beauty | 4 |
+| Fashion accessories | 4 |
+| Home and lifestyle  | 4.1 |
+
+
+<b>9. How to find average rating each product line? </b> <br> 
+```sql
+ SELECT TOP (100) 
+     Product_Line,
+     ROUND(AVG(Rating),2) as Avg_Rating
+	 
+  FROM [Walmart].[dbo].[WalmartSalesData]
+  GROUP BY Product_Line
+  ORDER BY Avg_Rating
+```
+<b>Output</b>
+
+| Product_Line       | Avg_Rating | 
+|-------------|---------------------|
+| Home and lifestyle| 6.84 |
+| Sports and travel| 6.92 |
+| Electronic accessories  | 6.92 |
+| Health and beauty | 7 |
+| Fashion accessories | 7.03 |
+| Food and beverages | 7.11 |
+
+
+<b>10. Identify criteria of rating. </b> <br> 
+```sql
+SELECT Criteria, COUNT(*) as Number_Rating_Criteria FROM (
+  SELECT TOP (1000)
+  TIME,
+  CASE
+   WHEN Rating >= 9 THEN 'Excellent'
+   WHEN Rating >= 7 THEN 'Good'
+   WHEN Rating > 5  THEN 'Pretty Good'
+   WHEN Rating > 4 THEN 'Fair'
+   WHEN Rating > 3 THEN 'Bad'
+  ELSE 'Very Bad'
+  END Criteria
+FROM [Walmart].[dbo].[WalmartSalesData])sub
+GROUP BY Criteria
+ORDER BY Number_Rating_Criteria
+```
+<b>Output</b>
+
+| Criteria       | Number_Rating_Criteria | 
+|-------------|---------------------|
+| Bad| 11 |
+| Fair| 163 |
+| Excellent  | 166|
+| Pretty Good | 325 |
+| Good | 335 |
+
+
+<b>10. How to find number of order each product line. </b> <br> 
+```sql
+SELECT TOP (1000) 
+	Product_Line,
+    COUNT(*) Number_Product
+    
+  FROM [Walmart].[dbo].[WalmartSalesData]
+  GROUP BY Product_Line
+  ORDER BY Number_Product 
+
+```
+<b>Output</b>
+
+|Product_Line     | Number_Product  | 
+|-------------|---------------------|
+| Health and beauty| 152 |
+| Home and lifestyle| 160 |
+| Sports and travel  | 166|
+| Electronic accessories | 170 |
+| Food and beverages | 174 |
+|Fashion accessories | 178 |
+
+
+
 

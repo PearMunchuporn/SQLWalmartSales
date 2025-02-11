@@ -192,7 +192,7 @@ ORDER BY Customer_Number
 | Afternoon Time | 365 |
 
 <b>8. How to find number of customers each day of week? </b><br>
-Use <i><b>FORMAT and CAST</i></b> to extrach day name from date (data type) in abbreviated format.
+Use <i><b>FORMAT and CAST</i></b> to extract day name from date (data type) in abbreviated format.
 ```SQL
 SELECT Day_Name,  COUNT(*) Customer_Number
 FROM (

@@ -41,6 +41,16 @@ ORDER BY Product_line
   GROUP BY  City
   ORDER BY Customer_Number
 
+     --Number of customer's gender by city
+    SELECT TOP (1000)
+  City,
+  Gender
+  ,COUNT(Gender) as Customer_Number
+  FROM [Walmart].[dbo].[WalmartSalesData]
+  GROUP BY  City,Gender
+  ORDER BY City
+
+
  ----Number of customer per day.
 SELECT Date ,sub.Customer_Number
 FROM

@@ -146,8 +146,30 @@ ORDER BY Product_line
 | Mandalay   |  332|
 | Yangon | 340 |
 
+<b>6. How to find number of customer by gender of each city? </b><br>
 
-<b>6. How to find number of customers each day? </b><br>
+```sql
+    SELECT TOP (1000)
+  City,
+  Gender
+  ,COUNT(Gender) as Customer_Number
+  FROM [Walmart].[dbo].[WalmartSalesData]
+  GROUP BY  City,Gender
+  ORDER BY City
+```
+
+<b>Output</b>
+
+| City        |  Gender | Customer_Number|
+|-------------|----|----------------|
+| Mandalay|  Female | 162 |
+| Mandalay   |  Male | 170|
+| Naypyitaw |  Female | 178 |
+| Naypyitaw   |  Male | 150 |
+| Yangon |  Female | 161 |
+| Yangon   |  Male | 179 |
+
+<b>7. How to find number of customers each day? </b><br>
 
 
 ```sql
@@ -163,7 +185,7 @@ SELECT Date,
 ORDER BY Date
 ```
 
-<b>7. How to find number of customers each timing of the day? </b><br>
+<b>8. How to find number of customers each timing of the day? </b><br>
 
 Use <b><i>CASE WHEN</b></i> for grouping by condition.
 ```sql
@@ -191,7 +213,7 @@ ORDER BY Customer_Number
 | Morning Time | 280 |
 | Afternoon Time | 365 |
 
-<b>8. How to find number of customers each day of week? </b><br>
+<b>9. How to find number of customers each day of week? </b><br>
 Use <i><b>FORMAT and CAST</i></b> to extract day name from date (data type) in abbreviated format.
 ```SQL
 SELECT Day_Name,  COUNT(*) Customer_Number
@@ -464,6 +486,11 @@ SELECT TOP (1000)
 | Electronic accessories | 170 |
 | Food and beverages | 174 |
 |Fashion accessories | 178 |
+
+<br>
+<hr>
+<br>
+
 
 
 

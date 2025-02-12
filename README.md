@@ -648,6 +648,24 @@ SELECT
 | Fashion accessories |305.09 |
 
 
+<b>8. How to fine average sales by city.</b>
+
+```sql
+ SELECT
+ City
+,ROUND(AVG(Total),2) AS Avg_sale
+ FROM [Walmart].[dbo].[WalmartSalesData]
+ GROUP BY City
+ ORDER BY Avg_sale DESC
+
+```
+
+|City     | Avg_sale  | 
+|-------------|---------------------|
+| Naypyitaw | 337.1 |
+| Mandalay | 319.87 |
+| Yangon | 312.35 |
+
 
 
 

@@ -668,6 +668,58 @@ SELECT
 
 
 
+<b>9. How to fine average sales by customer type.</b>
+
+```sql
+ SELECT 
+Customer_Type
+,ROUND(AVG(Total),2) AS Avg_Sale
+ FROM [Walmart].[dbo].[WalmartSalesData]
+ GROUP BY Customer_type
+ ORDER BY Avg_Sale DESC
+
+```
+
+|Customer_Type    | Avg_Sale  | 
+|-------------|---------------------|
+| Member | 327.79 |
+| Normal | 318.12 |
+
+
+<b>10. How to fine date got max sales.</b>
+
+```sql
+ SELECT 
+ Date,
+ FORMAT(CAST(Date AS DATE), 'ddd') as Day_Name,
+ ROUND(Total,2) as Max_Sale
+
+ FROM [Walmart].[dbo].[WalmartSalesData]
+ WHERE Total = (SELECT MAX(Total)  FROM [Walmart].[dbo].[WalmartSalesData])
+
+```
+
+|Date    | Day_Name  | Max_Sale|
+|-------------|-----------|----------|
+| 2019-02-15 | Fri | 1042.65 |
+
+
+<b>11. How to fine date got min sales.</b>
+
+```sql
+ SELECT 
+ Date,
+ FORMAT(CAST(Date AS DATE), 'ddd') as Day_Name,
+ ROUND(Total,2) as Min_Sale
+
+ FROM [Walmart].[dbo].[WalmartSalesData]
+ WHERE Total = (SELECT MIN(Total)  FROM [Walmart].[dbo].[WalmartSalesData])
+
+```
+
+|Date    | Day_Name  | Min_Sale|
+|-------------|-----------|----------|
+| 2019-02-07 | Thu |10.68|
 
 
 

@@ -555,7 +555,7 @@ ORDER BY Date
 
 ```sql
 SELECT 
- City, ROUND(SUM (Total),2) as Total_Sales
+ City, ROUND(SUM (Total),2) AS Total_Sales
  FROM [Walmart].[dbo].[WalmartSalesData]
  GROUP BY City
 
@@ -572,7 +572,7 @@ SELECT
 
 ```sql
 SELECT 
- Payment, ROUND(SUM (Total),2) as Total_Sales
+ Payment, ROUND(SUM (Total),2) AS Total_Sales
  FROM [Walmart].[dbo].[WalmartSalesData]
  GROUP BY Payment
  ORDER BY Total_Sales
@@ -589,11 +589,11 @@ SELECT
 ```sql
 SELECT
  Product_Line
-,ROUND(MAX(total),2) as Max_Sale
+,ROUND(MAX(total),2) AS Max_Sale
 
  FROM [Walmart].[dbo].[WalmartSalesData]
  GROUP BY Product_Line
- ORDER BY Max_sale DESC
+ ORDER BY Max_Sale DESC
 ```
 
 |Product_Line     | Max_Sale  | 
@@ -604,6 +604,51 @@ SELECT
 | Sports and travel | 1002.12 |
 | Health and beauty| 950.25|
 | Electronic accessories| 942.45|
+
+
+<b>6. How to fine min sales by product line </b>
+```sql
+ SELECT 
+ Product_Line
+,ROUND(MIN(Total),2) AS Min_Sale
+
+ FROM [Walmart].[dbo].[WalmartSalesData]
+
+ GROUP BY Product_line
+ ORDER BY Min_Sale
+```
+
+|Product_Line     | Min_Sale  | 
+|-------------|---------------------|
+| Sports and travel | 10.68 |
+| Fashion accessories | 12.69 |
+| Home and lifestyle | 14.68 |
+| Health and beauty | 18.64 |
+| Food and beverages | 22.66 |
+| Electronic accessories|26.72|
+
+<b>7. How to fine average sales by product line </b>
+```sql
+ SELECT 
+ Product_line
+,ROUND(AVG(Total),2) AS Avg_Sale
+ FROM [Walmart].[dbo].[WalmartSalesData]
+ GROUP BY Product_line
+ ORDER BY Avg_Sale DESC
+
+```
+
+|Product_Line     | Avg_Sale  | 
+|-------------|---------------------|
+| Home and lifestyle |  336.64 |
+| Sports and travel | 332.07 |
+| Health and beauty | 323.64 |
+| Food and beverages| 322.67 |
+| FElectronic accessories | 319.63 |
+| Fashion accessories |305.09 |
+
+
+
 
 
 

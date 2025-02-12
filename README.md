@@ -239,6 +239,32 @@ ORDER BY Customer_Number DESC
 | Sun| 133 |
 | Mon | 125 |
 
+<b>10. How to find number of customers each month? </b><br>
+Use <i><b>FORMAT and CAST</i></b> to extract month name from date (data type) in abbreviated format.
+```SQL
+SELECT Month_Name,  COUNT(*) Customer_Number
+FROM (
+SELECT 
+       FORMAT(CAST(Date as date), 'MMM') as Month_Name  
+  FROM [Walmart].[dbo].[WalmartSalesData]
+
+) subq
+GROUP BY Month_Name
+ORDER BY Customer_Number DESC
+
+```
+
+<b>Output</b>
+
+| Month_Name       |  Customer_Number|
+|-------------|----|
+| Jan|  352 |
+| Mar   |  345 |
+| Feb | 303 |
+
+
+
+
 <br>
 <hr>
 <br>
@@ -490,6 +516,95 @@ SELECT TOP (1000)
 <br>
 <hr>
 <br>
+
+<h2>Sales Analysis</h2>
+
+The objective of sales analysis is to optimize sales strategies for products.
+<h3>Sales Questions and SQL solutions</h3>
+
+<b>1. How to fine sales by each day.</b>
+
+```sql
+SELECT Date ,sub.Total_Sales
+FROM
+(
+SELECT Date,  
+       ROUND(SUM(Total),2) AS Total_Sales
+  FROM [Walmart].[dbo].[WalmartSalesData]
+ GROUP BY Date
+) sub
+
+ORDER BY Date
+```
+<b>2. How to fine sales by each day.</b>
+
+```sql
+SELECT Date ,sub.Total_Sales
+FROM
+(
+SELECT Date,  
+       ROUND(SUM(Total),2) AS Total_Sales
+  FROM [Walmart].[dbo].[WalmartSalesData]
+ GROUP BY Date
+) sub
+
+ORDER BY Date
+```
+
+<b>3. How to fine total sales by city.</b>
+
+```sql
+SELECT 
+ City, ROUND(SUM (Total),2) as Total_Sales
+ FROM [Walmart].[dbo].[WalmartSalesData]
+ GROUP BY City
+
+```
+
+|City     | Total_Sales  | 
+|-------------|---------------------|
+| Naypyitaw | 110568.71 |
+| Yangon | 106200.37 |
+| Mandalay | 106197.67 |
+
+
+<b>4. How to fine total sales by payment type.</b>
+
+```sql
+SELECT 
+ Payment, ROUND(SUM (Total),2) as Total_Sales
+ FROM [Walmart].[dbo].[WalmartSalesData]
+ GROUP BY Payment
+ ORDER BY Total_Sales
+```
+
+|Payment     | Total_Sales  | 
+|-------------|---------------------|
+| Credit card | 100767.07 |
+| Ewallet | 109993.11 |
+| Cash | 112206.57|
+
+
+<b>5. How to fine max sales by product line </b>
+```sql
+SELECT
+ Product_Line
+,ROUND(MAX(total),2) as Max_Sale
+
+ FROM [Walmart].[dbo].[WalmartSalesData]
+ GROUP BY Product_Line
+ ORDER BY Max_sale DESC
+```
+
+|Product_Line     | Max_Sale  | 
+|-------------|---------------------|
+| Fashion accessories | 1042.65 |
+| Food and beverages | 1034.46 |
+| Home and lifestyle | 1023.75|
+| Sports and travel | 1002.12 |
+| Health and beauty| 950.25|
+| Electronic accessories| 942.45|
+
 
 
 
